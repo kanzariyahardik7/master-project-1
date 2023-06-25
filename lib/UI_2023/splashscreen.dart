@@ -78,7 +78,11 @@ class SplashScreenState extends State<SplashScreen> with SingleTickerProviderSta
                     child: Container(
                       height: animation1.value,
                         width: animation2.value,
-                         child: Center(child: Text("Hello..",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32,color: Colors.white),))                    ),
+                         child: Center(
+                             child:Icon(Icons.account_balance,size: 70,color: Colors.white,)
+                         //Text("Hello..",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32,color: Colors.white),)
+                         )
+                    ),
                   ),
                   Text("Welcome to Master app", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32,color: Colors.indigo),),
                 ],
