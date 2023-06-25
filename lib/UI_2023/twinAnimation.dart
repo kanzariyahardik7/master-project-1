@@ -8,8 +8,7 @@ class twinAnimation extends StatefulWidget {
   State<twinAnimation> createState() => _twinAnimationState();
 }
 
-class _twinAnimationState extends State<twinAnimation>
-    with SingleTickerProviderStateMixin {
+class _twinAnimationState extends State<twinAnimation> with SingleTickerProviderStateMixin {
   late Animation animation;
   late Animation ColorAnimation;
   late AnimationController animationController;

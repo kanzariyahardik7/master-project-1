@@ -21,7 +21,7 @@ class _CloudFileManagerUIState extends State<CloudFileManagerUI> {
       title: "Master App",
       theme: ThemeData(
           //primaryColor: Colors.orange,
-          primarySwatch: Colors.orange),
+          primarySwatch: Colors.indigo),
       home: SplashScreen(),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photos/UI_2023/masterpage.dart';
+import 'package:photos/UI_2023/splashscreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -36,8 +38,13 @@ class _LoginPageState extends State<LoginPage> {
                   enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 ),
               ),
-              ElevatedButton(onPressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MasterPage()));
+              ElevatedButton(onPressed: () async{
+
+                var sharedprefs = await SharedPreferences.getInstance();
+                sharedprefs.setBool(SplashScreenState.KEYLOGIN, true);
+
+                print(SplashScreenState.KEYLOGIN);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MasterPage()));
                 }, child:Text("Login")),
             ],
           ),

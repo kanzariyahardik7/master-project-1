@@ -37,8 +37,8 @@ TextStyle FONT_16_BOLD (){
 LinearGradient Orange_Gradiant(){
   return LinearGradient(
       colors: [
-        Color(0xffffecd2),
-        Color(0xfffcb69f),
+        Color(0xff4b3987),
+        Color(0xffaab1e5),
       ]
   );
 }
