@@ -67,7 +67,8 @@ class _MyDrawerState extends State<MyDrawer> {
               ],
             ),
             Divider(thickness: 3),
-            ElevatedButton(onPressed: ()async{
+            ElevatedButton(
+                onPressed: ()async{
               var sharedprefs = await  SharedPreferences.getInstance();
               sharedprefs.setBool(SplashScreenState.KEYLOGIN, false);
 

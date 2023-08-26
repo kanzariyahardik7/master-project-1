@@ -30,89 +30,114 @@ class _MasterPageState extends State<MasterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
-      drawer: Drawer(
-        child: MyDrawer(),
-      ),
-      appBar: Custom_Appbar("Master App"),
-      body: ListView(
-        //physics: NeverScrollableScrollPhysics(),
-        children: [
-          Column(
-            children: [
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ListingPage()));},
-                  child: CustomContainer("API caliing page")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>TeamFolderPage()));},
-                  child: CustomContainer("UI 2023 1")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WsCube()));},
-                  child: CustomContainer("WS CUBE")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatUI()));},
-                  child: CustomContainer("ChatUI Page")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>GridViewPage()));},
-                  child: CustomContainer("Grid View")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CustomWidget()));},
-                  child: CustomContainer("Custom Widget 1")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DeshboardPage()));},
-                  child: CustomContainer("Niomorphisom")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CustomWidget2()));},
-                  child: CustomContainer("Custom Widget 2")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>incriment()));},
-                  child: CustomContainer("Increment operators")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BmiCalculator()));},
-                  child: CustomContainer("BMI Calculator App")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AnmContainer()));},
-                  child: CustomContainer("Animeted Container")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HeroAnimation()));},
-                  child: CustomContainer("Hero Animation")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ThreeDList()));},
-                  child: CustomContainer("3D List")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>mapList()));},
-                  child: CustomContainer("Mapping List Widget")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>twinAnimation()));},
-                  child: CustomContainer("Twin Animation")
-              ),
-              InkWell(
-                  onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>rippleAnimation()));},
-                  child: CustomContainer("Ripple Animation")
-              ),
-            ],
-          ),
-        ],
-      )
-    );
+        drawer: Drawer(
+          child: MyDrawer(),
+        ),
+        appBar: Custom_Appbar("Master App"),
+        body: ListView(
+          //physics: NeverScrollableScrollPhysics(),
+          children: [
+            Column(
+              children: [
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ListingPage()));
+                    },
+                    child: CustomContainer("API caliing page")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => TeamFolderPage()));
+                    },
+                    child: CustomContainer("UI 2023 1")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => WsCube()));
+                    },
+                    child: CustomContainer("WS CUBE")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => ChatUI()));
+                    },
+                    child: CustomContainer("ChatUI Page")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => GridViewPage()));
+                    },
+                    child: CustomContainer("Grid View")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CustomWidget()));
+                    },
+                    child: CustomContainer("Custom Widget 1")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DeshboardPage()));
+                    },
+                    child: CustomContainer("Niomorphisom")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CustomWidget2()));
+                    },
+                    child: CustomContainer("Custom Widget 2")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => incriment()));
+                    },
+                    child: CustomContainer("Increment operators")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => BmiCalculator()));
+                    },
+                    child: CustomContainer("BMI Calculator App")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AnmContainer()));
+                    },
+                    child: CustomContainer("Animeted Container")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => HeroAnimation()));
+                    },
+                    child: CustomContainer("Hero Animation")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ThreeDList()));
+                    },
+                    child: CustomContainer("3D List")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => mapList()));
+                    },
+                    child: CustomContainer("Mapping List Widget")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => twinAnimation()));
+                    },
+                    child: CustomContainer("Twin Animation")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => rippleAnimation()));
+                    },
+                    child: CustomContainer("Ripple Animation")),
+              ],
+            ),
+          ],
+        ));
   }
-
-
-
-
 }

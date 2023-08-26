@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:photos/UI_2023/masterpage.dart';
 import 'package:photos/UI_2023/splashscreen.dart';
+import 'package:photos/provider/userprovider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const CloudFileManagerUI());
@@ -16,13 +17,16 @@ class CloudFileManagerUI extends StatefulWidget {
 class _CloudFileManagerUIState extends State<CloudFileManagerUI> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Master App",
-      theme: ThemeData(
-          //primaryColor: Colors.orange,
-          primarySwatch: Colors.indigo),
-      home: SplashScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UserProvider>(create: (_) => UserProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Master App",
+        theme: ThemeData(primarySwatch: Colors.indigo),
+        home: SplashScreen(),
+      ),
     );
   }
 }

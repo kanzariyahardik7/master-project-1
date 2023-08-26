@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:photos/Api/Api.dart';
 import 'package:photos/Api/ApiScreen/Singlruser.dart';
-import 'package:photos/Models/ListModel.dart';
+import 'package:photos/provider/userprovider.dart';
 import 'package:photos/ui_helper/utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 class ListingPage extends StatefulWidget {
   const ListingPage({Key? key}) : super(key: key);
@@ -13,82 +12,83 @@ class ListingPage extends StatefulWidget {
 }
 
 class _ListingPageState extends State<ListingPage> {
+  var res;
+  @override
+  void initState() {
+    getApi();
+    super.initState();
+  }
 
+  getApi() async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    await userProvider.getuserlist();
+    res = userProvider.listUserModel.toJson();
+    // print(res);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Custom_Appbar("Listing Page"),
-      body: Column(
-        children: [
-          Expanded(
-            child: FutureBuilder<ListUserModel>(
-              future: UserList().userList(),
-                builder: (context,snapshot){
-                if(snapshot.hasData){
-                  return  ListView.separated(
-                    itemCount: snapshot.data!.data!.length,
-                    itemBuilder: (context, index) {
-                      var res = snapshot.data!.data![index];
-                      print("-------------->>>>>>>>>>");
-                      print(snapshot.data!.data!.length);
-                      return InkWell(
-                        onTap: () async{
-                          final SharedPreferences prefs = await SharedPreferences.getInstance();
-                          prefs.setString('UserID', res.id.toString());
-
-                          setState(() {
-                            print(' ***************${'UserID'}');
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SingleUser()));
-                          });
+        appBar: Custom_Appbar("Listing Page"),
+        body: Consumer<UserProvider>(
+          builder: (context, value, child) {
+            return value.loading
+                ? Container()
+                : Column(
+                    children: [
+                      Expanded(
+                          child: ListView.separated(
+                        itemCount: value.listUserModel.data!.length,
+                        itemBuilder: (context, index) {
+                          print("-------------->>>>>>>>>>");
+                          return InkWell(
+                            onTap: () {
+                              var userid = value.listUserModel.data?[index].id;
+                              print(' ***************${'userid'}');
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => SingleUser(
+                                        userid: userid.toString(),
+                                      )));
+                            },
+                            child: Card(
+                              elevation: 3,
+                              child: ListTile(
+                                leading: InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                          barrierDismissible: true,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return Container(
+                                              height: 300,
+                                              width: 300,
+                                              child: Image.network(
+                                                  "${value.listUserModel.data?[index].avatar.toString()}"),
+                                            );
+                                          });
+                                    },
+                                    child: CircleAvatar(
+                                        radius: 30,
+                                        backgroundImage: NetworkImage(
+                                            "${value.listUserModel.data?[index].avatar.toString()}"))),
+                                title: Text(
+                                    "${value.listUserModel.data?[index].firstName}" +
+                                        " " +
+                                        "${value.listUserModel.data?[index].firstName}"),
+                                subtitle: Text("email"),
+                                trailing: Text(
+                                    "${value.listUserModel.data?[index].id}"),
+                              ),
+                            ),
+                          );
                         },
-                        child: Card(
-                          elevation: 3,
-                          child: ListTile(
-                            leading: InkWell(
-                                onTap: () {
-                                  showDialog(
-                                      barrierDismissible: true,
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          height: 300,
-                                          width: 300,
-                                          child: Image.network(res.avatar.toString()),
-                                        );
-                                      }
-                                  );
-                                },
-                                child: CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage: NetworkImage(res.avatar.toString()))),
-                            title: Text(res.firstName.toString()+" "+res.lastName.toString()),
-                            subtitle: Text(res.email.toString()),
-                            trailing: Text(res.id.toString()),
-                          ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return Divider();
-                    },
+                        separatorBuilder: (context, index) {
+                          return Divider();
+                        },
+                      )),
+                    ],
                   );
-                }
-                else if(snapshot.hasError){
-                  return Text("${snapshot.error}");
-                }
-                else{
-                  return Center(child: CircularProgressIndicator());
-                }
-            }
-            ),
-          ),
-        ],
-      ),
-    );
+          },
+        ));
   }
 }
-
-
-
-

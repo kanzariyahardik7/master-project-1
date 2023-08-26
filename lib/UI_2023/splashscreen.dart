@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:photos/UI_2023/LoginPage.dart';
 import 'package:photos/UI_2023/masterpage.dart';

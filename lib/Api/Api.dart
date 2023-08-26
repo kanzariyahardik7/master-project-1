@@ -1,92 +1,104 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:photos/Models/DeleteUserModel.dart';
 import 'package:photos/Models/EditUserModel.dart';
-import 'package:photos/Models/ListModel.dart';
 import 'package:photos/Models/SingleuserModel.dart';
 import 'package:photos/Models/addUserModel.dart';
-
+import 'package:photos/Models/listuserModel.dart';
 
 const String Baseurl = "https://reqres.in/";
 
 //https://reqres.in/api/users/7
 
+class ApiService {
+  ApiService();
 
-// class ApiService{
-//
-//   String uri= "https://reqres.in/api/users?page=2";
-//
-//   Future<ListUserModel> getUser() async {
-//     var response = await http.get(Uri.parse(uri));
-//
-//   }
-//
-// }
+  Future<ListUserModel> userList() async {
+    ListUserModel listUserModel;
+    var response =
+        await http.get(Uri.parse("https://reqres.in/api/users?page=2"));
+    dynamic data = jsonDecode(response.body);
+    listUserModel = ListUserModel.fromJson(data);
+    print(listUserModel.toJson());
+    return listUserModel;
+  }
 
-
-
-class UserList{
-  UserList();
-  Future<ListUserModel>userList() async{
-    var uri = Baseurl+"api/users?page=2";
-    http.Response response = await http.get(Uri.parse(uri),
-      );
-    var data = json.decode(response.body);
-    print("UserList"+(response.body));
-    return ListUserModel.fromJson(data);
+  Future<SingleUserModel> singleuser(String userid) async {
+    SingleUserModel singleUserModel;
+    var response =
+        await http.get(Uri.parse("https://reqres.in/api/users/${userid}"));
+    dynamic data = jsonDecode(response.body);
+    singleUserModel = SingleUserModel.fromJson(data);
+    log("hello world");
+    print(singleUserModel.toJson());
+    return singleUserModel;
   }
 }
 
+// class UserList {
+//   UserList();
+//   Future<ListUserModel> userList() async {
+//     var uri = Baseurl + "api/users?page=2";
+//     http.Response response = await http.get(
+//       Uri.parse(uri),
+//     );
+//     var data = json.decode(response.body);
+//     print("UserList" + (response.body));
+//     return ListUserModel.fromJson(data);
+//   }
+// }
 
-class SigleUserList{
+class SigleUserList {
   SigleUserList();
-  Future<SingleUserModel>singleuserList(userid) async{
-    var uri = Baseurl+"api/users/${userid}";
-    http.Response response = await http.get(Uri.parse(uri),);
+  Future<SingleUserModel> singleuserList(userid) async {
+    var uri = Baseurl + "api/users/${userid}";
+    http.Response response = await http.get(
+      Uri.parse(uri),
+    );
     var data = json.decode(response.body);
-    print("SingleUserList"+(response.body));
+    print("SingleUserList" + (response.body));
     return SingleUserModel.fromJson(data);
   }
 }
 
-
-class AddUser{
+class AddUser {
   AddUser();
-  Future<AddUserModel>adduserList(name,job) async{
+  Future<AddUserModel> adduserList(name, job) async {
     var uri = Baseurl + "api/users/7";
-    http.Response response = await http.post(Uri.parse(uri),body:{
+    http.Response response = await http.post(Uri.parse(uri), body: {
       "name": name,
       "job": job,
     });
     var data = json.decode(response.body);
-    print("Added User"+response.body);
+    print("Added User" + response.body);
     return AddUserModel.fromJson(data);
   }
 }
 
-class EditUser{
+class EditUser {
   EditUser();
-  Future<EditUserModel>edituserList(name,job) async{
+  Future<EditUserModel> edituserList(name, job) async {
     var uri = Baseurl + "api/users/7";
-    http.Response response = await http.put(Uri.parse(uri),body:{
+    http.Response response = await http.put(Uri.parse(uri), body: {
       "name": name,
       "job": job,
     });
     var data = json.decode(response.body);
-    print("Updated User"+response.body);
+    print("Updated User" + response.body);
     return EditUserModel.fromJson(data);
   }
 }
 
-class DeleteUser{
+class DeleteUser {
   DeleteUser();
-  Future<DeleteUserModel>deleteuserList(id) async{
+  Future<DeleteUserModel> deleteuserList(id) async {
     var uri = Baseurl + "api/users/7";
-    http.Response response = await http.delete(Uri.parse(uri),body:{
+    http.Response response = await http.delete(Uri.parse(uri), body: {
       "id": id,
     });
     var data = json.decode(response.body);
-    print("Deleted User"+response.body);
+    print("Deleted User" + response.body);
     return DeleteUserModel.fromJson(data);
   }
 }

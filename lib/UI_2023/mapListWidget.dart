@@ -17,10 +17,13 @@ class _mapListState extends State<mapList> {
       body: Container(
         child: ListView(
           children:
-            nameList.map((e) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(elevation: 5,child: Container(height: 50,child: Center(child: Text(e)),)),
-            )).toList(),
+            nameList.map((e) {
+              return  Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(elevation: 5,child: Container(height: 50,child: Center(child: Text(e)),)),
+              );
+            }
+            ).toList(),
         ),
       ),
     );
