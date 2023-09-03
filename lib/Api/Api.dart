@@ -19,8 +19,9 @@ class ApiService {
     var response =
         await http.get(Uri.parse("https://reqres.in/api/users?page=2"));
     dynamic data = jsonDecode(response.body);
+    log("response.body = ${response.body}");
     listUserModel = ListUserModel.fromJson(data);
-    print(listUserModel.toJson());
+    print(listUserModel);
     return listUserModel;
   }
 
