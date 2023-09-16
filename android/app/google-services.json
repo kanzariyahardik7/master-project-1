@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "19631542350",
+    "project_id": "masterapp-4e49b",
+    "storage_bucket": "masterapp-4e49b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19631542350:android:9d057a2f875f68f358731f",
+        "android_client_info": {
+          "package_name": "com.apex.masterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19631542350-4on4hbhm2pml9prgg3caum6mdg29mhd0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apex.masterapp",
+            "certificate_hash": "3f76ed935e30271433e1cd6ffec8eb689a3730f4"
+          }
+        },
+        {
+          "client_id": "19631542350-q4plpm66hf17r7mtlcjt6iaomtkufnn4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpBLnwrx4oHrnFqkKdH9wM5rIZ_154o5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19631542350-76h5tbk868n9j56v8rlknt4s6ds90fb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

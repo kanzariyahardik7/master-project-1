@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:photos/Api/Api.dart';
-import 'package:photos/Models/SingleuserModel.dart';
-import 'package:photos/Models/listuserModel.dart';
+import 'package:masterapp/Api/Api.dart';
+import 'package:masterapp/Models/SingleuserModel.dart';
+import 'package:masterapp/Models/listuserModel.dart';
 
 class UserProvider extends ChangeNotifier {
   bool loading = false;

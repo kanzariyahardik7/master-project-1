@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:photos/ui_helper/utils.dart';
+import 'package:masterapp/ui_helper/utils.dart';
 
 class twinAnimation extends StatefulWidget {
   const twinAnimation({Key? key}) : super(key: key);
@@ -8,7 +8,8 @@ class twinAnimation extends StatefulWidget {
   State<twinAnimation> createState() => _twinAnimationState();
 }
 
-class _twinAnimationState extends State<twinAnimation> with SingleTickerProviderStateMixin {
+class _twinAnimationState extends State<twinAnimation>
+    with SingleTickerProviderStateMixin {
   late Animation animation;
   late Animation ColorAnimation;
   late AnimationController animationController;
@@ -17,15 +18,15 @@ class _twinAnimationState extends State<twinAnimation> with SingleTickerProvider
   void initState() {
     // TODO: implement initState
     super.initState();
-    animationController = AnimationController(vsync: this, duration: Duration(seconds: 2));
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
     animation = Tween(begin: 0.0, end: 200.0).animate(animationController);
-    ColorAnimation = ColorTween(begin: Colors.blue,end: Colors.yellowAccent).animate(animationController);
+    ColorAnimation = ColorTween(begin: Colors.blue, end: Colors.yellowAccent)
+        .animate(animationController);
 
     animationController.addListener(() {
       print(animation.value);
-      setState(() {
-
-      });
+      setState(() {});
     });
     animationController.forward();
   }

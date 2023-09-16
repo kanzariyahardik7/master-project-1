@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:photos/ui_helper/utils.dart';
+import 'package:masterapp/ui_helper/utils.dart';
 
 class AnmContainer extends StatefulWidget {
   const AnmContainer({Key? key}) : super(key: key);
@@ -29,14 +29,17 @@ class _AnmContainerState extends State<AnmContainer> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 4), () { reload();});
+    Timer(Duration(seconds: 4), () {
+      reload();
+    });
   }
 
-  void reload(){
+  void reload() {
     setState(() {
       isFirst = false;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: Custom_Appbar("Foo Animation"),
@@ -119,19 +122,21 @@ class _AnmContainerState extends State<AnmContainer> {
                           width: 200.0,
                           fit: BoxFit.cover,
                         ),
-                        crossFadeState: isFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                        duration: Duration(seconds: 1)
-                    ),
-                    ElevatedButton(onPressed: () {
+                        crossFadeState: isFirst
+                            ? CrossFadeState.showFirst
+                            : CrossFadeState.showSecond,
+                        duration: Duration(seconds: 1)),
+                    ElevatedButton(
+                        onPressed: () {
+                          if (isFirst) {
+                            isFirst = false;
+                          } else {
+                            isFirst = true;
+                          }
 
-                      if(isFirst){
-                        isFirst = false;
-                      }else{
-                        isFirst = true;
-                      }
-
-                      setState(() {});
-                    }, child: Text("Cross Fade"))
+                          setState(() {});
+                        },
+                        child: Text("Cross Fade"))
                   ],
                 ),
               ],

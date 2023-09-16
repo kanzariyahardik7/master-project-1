@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:photos/ui_helper/utils.dart';
+import 'package:masterapp/ui_helper/utils.dart';
 import 'package:intl/intl.dart';
 
 class WsCube extends StatefulWidget {
@@ -14,7 +14,6 @@ class _WsCubeState extends State<WsCube> {
   var MobileNumberController = TextEditingController();
   var EmailController = TextEditingController();
 
-
   var DropdwnList = [
     "USA",
     "INDIA",
@@ -28,10 +27,10 @@ class _WsCubeState extends State<WsCube> {
 
   @override
   Widget build(BuildContext context) {
-
-    callbackfunction(){
+    callbackfunction() {
       print("clicked");
     }
+
     var time = DateTime.now();
     var selectedDate;
     var selectedTime;
@@ -59,11 +58,15 @@ class _WsCubeState extends State<WsCube> {
                                   //labelStyle: TextStyle(color: Colors.pink),
                                   suffixIcon: IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.remove_red_eye, ),
+                                    icon: Icon(
+                                      Icons.remove_red_eye,
+                                    ),
                                   ),
                                   prefixIcon: IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.account_box, ),
+                                    icon: Icon(
+                                      Icons.account_box,
+                                    ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(11),
@@ -72,8 +75,7 @@ class _WsCubeState extends State<WsCube> {
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(11),
-                                    borderSide:
-                                        BorderSide(width: 2),
+                                    borderSide: BorderSide(width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(11),
@@ -90,14 +92,18 @@ class _WsCubeState extends State<WsCube> {
                                   // hintText: "Enter your mobile number",
                                   // hintStyle: TextStyle(color: Colors.pink),
                                   labelText: "Enter your mobile number",
-                                 // labelStyle: TextStyle(color: Colors.pink),
+                                  // labelStyle: TextStyle(color: Colors.pink),
                                   suffixIcon: IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.remove_red_eye,),
+                                    icon: Icon(
+                                      Icons.remove_red_eye,
+                                    ),
                                   ),
                                   prefixIcon: IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.phone_android,),
+                                    icon: Icon(
+                                      Icons.phone_android,
+                                    ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(11),
@@ -106,8 +112,7 @@ class _WsCubeState extends State<WsCube> {
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(11),
-                                    borderSide:
-                                        BorderSide(width: 2),
+                                    borderSide: BorderSide(width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(11),
@@ -123,14 +128,18 @@ class _WsCubeState extends State<WsCube> {
                                   // hintText: "Enter your Email",
                                   // hintStyle: TextStyle(color: Colors.pink),
                                   labelText: "Enter your Email",
-                                 // labelStyle: TextStyle(color: Colors.pink),
+                                  // labelStyle: TextStyle(color: Colors.pink),
                                   suffixIcon: IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.remove_red_eye,),
+                                    icon: Icon(
+                                      Icons.remove_red_eye,
+                                    ),
                                   ),
                                   prefixIcon: IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.mail,),
+                                    icon: Icon(
+                                      Icons.mail,
+                                    ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(11),
@@ -139,8 +148,7 @@ class _WsCubeState extends State<WsCube> {
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(11),
-                                    borderSide:
-                                        BorderSide(width: 2),
+                                    borderSide: BorderSide(width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(11),
@@ -160,7 +168,8 @@ class _WsCubeState extends State<WsCube> {
                           Text("Your Name = ${NameController.text.toString()}"),
                           Text(
                               "Your Mobile Number = ${MobileNumberController.text.toString()}"),
-                          Text("Your Email = ${EmailController.text.toString()}"),
+                          Text(
+                              "Your Email = ${EmailController.text.toString()}"),
                         ],
                       )
                     ],
@@ -173,54 +182,58 @@ class _WsCubeState extends State<WsCube> {
                           context: context,
                           initialDate: DateTime.now(),
                           firstDate: DateTime(2021),
-                          lastDate: DateTime(2025)
-                      );
-                      if(datePicked != null){
-                       selectedDate = datePicked.day/datePicked.month/datePicked.year;
+                          lastDate: DateTime(2025));
+                      if (datePicked != null) {
+                        selectedDate =
+                            datePicked.day / datePicked.month / datePicked.year;
                         print(selectedDate);
-                        print("===========>>>>>> = ${datePicked.day}/${datePicked.month}/${datePicked.year}");
-                      }else{
+                        print(
+                            "===========>>>>>> = ${datePicked.day}/${datePicked.month}/${datePicked.year}");
+                      } else {
                         print("please select date");
                       }
                       setState(() {});
                     },
                     child: Text("Select Date")),
                 Text("Your selected date :", style: TextStyle(fontSize: 18)),
-                SizedBox(height: 25,),
+                SizedBox(
+                  height: 25,
+                ),
                 ElevatedButton(
                     onPressed: () async {
-                       TimeOfDay? pickedTime = await showTimePicker(
-                           context: context,
-                           initialTime: TimeOfDay.now(),
-                         initialEntryMode: TimePickerEntryMode.input
-                       );
+                      TimeOfDay? pickedTime = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.now(),
+                          initialEntryMode: TimePickerEntryMode.input);
 
-                      if(pickedTime != null){
-                        print("===========>>>>>> = ${pickedTime.hour}:${pickedTime.minute}");
+                      if (pickedTime != null) {
+                        print(
+                            "===========>>>>>> = ${pickedTime.hour}:${pickedTime.minute}");
                       }
                       setState(() {});
                     },
                     child: Text("Select Time")),
                 Text("Your Selected Time : ", style: TextStyle(fontSize: 18)),
-
-                SizedBox(height: 25,),
+                SizedBox(
+                  height: 25,
+                ),
                 Divider(),
                 TextButton(onPressed: () {}, child: Text("Text Button")),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("A",
-                        style:
-                            TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold)),
                     Text("B",
-                        style:
-                            TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold)),
                     Text("C",
-                        style:
-                            TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold)),
                     Text("D",
-                        style:
-                            TextStyle(fontSize: 25, fontWeight: FontWeight.bold))
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold))
                   ],
                 ),
                 SizedBox(
@@ -283,7 +296,8 @@ class _WsCubeState extends State<WsCube> {
                 ),
                 Divider(),
                 Text("Current Date= ${time.day}/${time.month}/${time.year}"),
-                Text("Current Time= ${time.hour}:${time.minute}:${time.second}"),
+                Text(
+                    "Current Time= ${time.hour}:${time.minute}:${time.second}"),
                 if (time.weekday == 1) ...[
                   Text("Monday")
                 ] else if (time.weekday == 2) ...[
@@ -316,8 +330,7 @@ class _WsCubeState extends State<WsCube> {
                 Divider(),
                 ElevatedButton(
                     onPressed: callbackfunction,
-                    child: Text("Call Back Button")
-                )
+                    child: Text("Call Back Button"))
               ],
             ),
           ),

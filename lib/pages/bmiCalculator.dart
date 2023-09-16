@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:photos/ui_helper/utils.dart';
+import 'package:masterapp/ui_helper/utils.dart';
 
 class BmiCalculator extends StatefulWidget {
   @override
@@ -32,16 +32,19 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     fontSize: 34,
                     fontWeight: FontWeight.w700),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               TextField(
                 controller: weightController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     labelText: "Enter your weight in kg",
                     suffixText: "Kg.",
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(11)),
-                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(11))
-                ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11))),
               ),
               SizedBox(
                 height: 20,
@@ -52,9 +55,10 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 decoration: InputDecoration(
                     labelText: "Enter your height in  feet",
                     suffixText: "feet.",
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(11)),
-                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(11))
-                ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11))),
               ),
               SizedBox(
                 height: 20,
@@ -65,60 +69,53 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 decoration: InputDecoration(
                     labelText: "Enter your height in inch",
                     suffixText: "inch.",
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(11)),
-                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(11))
-                ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11))),
               ),
               SizedBox(
                 height: 30,
               ),
               ElevatedButton(
                   onPressed: () {
-
                     var weight = weightController.text.toString();
                     var feet = feetController.text.toString();
                     var inch = inchController.text.toString();
 
-                    if(weight != "" || feet != "" || inch != ""){
-
+                    if (weight != "" || feet != "" || inch != "") {
                       var intweight = int.parse(weight);
                       var intfeet = int.parse(feet);
                       var intinch = int.parse(inch);
 
+                      var totalinch = (intfeet * 12) + intinch;
+                      var totalcm = totalinch * 2.54;
+                      var totalmeter = totalcm / 100;
 
-                      var totalinch = (intfeet*12)+intinch;
-                      var totalcm = totalinch*2.54;
-                      var totalmeter = totalcm/100;
+                      var Bmi = intweight / (totalmeter * totalmeter);
 
-                      var Bmi = intweight/(totalmeter*totalmeter);
-
-
-                      if(Bmi > 25){
+                      if (Bmi > 25) {
                         message = "you are over weighted";
                         bgcolor = Colors.red;
-                      }
-                      else if(Bmi <18){
+                      } else if (Bmi < 18) {
                         message = "you are under weighted";
                         bgcolor = Colors.yellow;
-                      }
-                      else{
+                      } else {
                         message = "you are healthy";
                         bgcolor = Colors.green;
                       }
-                      result =  "$message \n Your BMI is ${Bmi.toStringAsFixed(2)}";
+                      result =
+                          "$message \n Your BMI is ${Bmi.toStringAsFixed(2)}";
 
                       print("=================????????$totalmeter");
                       print("=================>>>>>>>>$result");
                       setState(() {});
-
-                    }
-                    else{
+                    } else {
                       result = "Please fill all the required blanks";
                       setState(() {});
                     }
                   },
-                  child: Text("Calculate")
-              ),
+                  child: Text("Calculate")),
               Text(result),
             ],
           ),

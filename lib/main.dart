@@ -1,9 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:photos/UI_2023/splashscreen.dart';
-import 'package:photos/provider/userprovider.dart';
+import 'package:masterapp/pages/splashscreen.dart';
+import 'package:masterapp/provider/userprovider.dart';
+import 'package:masterapp/ui_helper/colors.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const CloudFileManagerUI());
 }
 
@@ -24,7 +28,9 @@ class _CloudFileManagerUIState extends State<CloudFileManagerUI> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Master App",
-        theme: ThemeData(primarySwatch: Colors.indigo),
+        theme: ThemeData(
+          primaryColor: Black,
+        ),
         home: SplashScreen(),
       ),
     );

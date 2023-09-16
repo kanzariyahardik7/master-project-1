@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:photos/UI_2023/heroAnimation/detailPage.dart';
-import 'package:photos/ui_helper/utils.dart';
+import 'package:masterapp/pages/heroAnimation/detailPage.dart';
+import 'package:masterapp/ui_helper/utils.dart';
 
 class HeroAnimation extends StatefulWidget {
   const HeroAnimation({Key? key}) : super(key: key);
@@ -22,13 +22,16 @@ class _HeroAnimationState extends State<HeroAnimation> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailPage(),));
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DetailPage(),
+                  ));
                 },
                 child: Hero(
                     tag: "background",
-                    child: Image.asset("assets/images/maclern.jpg",)
-                ),
+                    child: Image.asset(
+                      "assets/images/maclern.jpg",
+                    )),
               ),
             ],
           ),

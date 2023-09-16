@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:photos/ui_helper/utils.dart';
+import 'package:masterapp/ui_helper/utils.dart';
 
 class ThreeDList extends StatefulWidget {
   const ThreeDList({Key? key}) : super(key: key);
@@ -21,13 +21,18 @@ class _ThreeDListState extends State<ThreeDList> {
           padding: const EdgeInsets.all(13.0),
           child: ListWheelScrollView(
             itemExtent: 100,
-            children: numberList.map((value) => Container(
+            children: numberList
+                .map((value) => Container(
                       width: double.infinity,
-              child: Center(child: Text("$value",style: TextStyle(fontSize: 38,fontWeight: FontWeight.bold),)),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13),
-                color: Colors.orange
-              ),
+                      child: Center(
+                          child: Text(
+                        "$value",
+                        style: TextStyle(
+                            fontSize: 38, fontWeight: FontWeight.bold),
+                      )),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(13),
+                          color: Colors.orange),
                     ))
                 .toList(),
           ),

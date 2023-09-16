@@ -1,38 +1,30 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-import 'package:photos/Models/DeleteUserModel.dart';
-import 'package:photos/Models/EditUserModel.dart';
-import 'package:photos/Models/SingleuserModel.dart';
-import 'package:photos/Models/addUserModel.dart';
-import 'package:photos/Models/listuserModel.dart';
+import 'package:masterapp/Models/DeleteUserModel.dart';
+import 'package:masterapp/Models/EditUserModel.dart';
+import 'package:masterapp/Models/SingleuserModel.dart';
+import 'package:masterapp/Models/addUserModel.dart';
+import 'package:masterapp/Models/listuserModel.dart';
 
 const String Baseurl = "https://reqres.in/";
 
-//https://reqres.in/api/users/7
-
 class ApiService {
-  ApiService();
-
+  final dio = Dio();
   Future<ListUserModel> userList() async {
     ListUserModel listUserModel;
-    var response =
-        await http.get(Uri.parse("https://reqres.in/api/users?page=2"));
-    dynamic data = jsonDecode(response.body);
-    log("response.body = ${response.body}");
-    listUserModel = ListUserModel.fromJson(data);
-    print(listUserModel);
+    Response response = await dio.get("https://reqres.in/api/users?page=2");
+    listUserModel = ListUserModel.fromJson(response.data);
+    log("listUserModel = ${listUserModel.toJson()}");
     return listUserModel;
   }
 
   Future<SingleUserModel> singleuser(String userid) async {
     SingleUserModel singleUserModel;
-    var response =
-        await http.get(Uri.parse("https://reqres.in/api/users/${userid}"));
-    dynamic data = jsonDecode(response.body);
-    singleUserModel = SingleUserModel.fromJson(data);
-    log("hello world");
-    print(singleUserModel.toJson());
+    Response response = await dio.get("https://reqres.in/api/users/${userid}");
+    singleUserModel = SingleUserModel.fromJson(response.data);
+    log("singleUserModel = ${singleUserModel.toJson()}");
     return singleUserModel;
   }
 }

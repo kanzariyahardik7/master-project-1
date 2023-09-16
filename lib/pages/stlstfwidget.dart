@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:photos/UI_2023/nextpage.dart';
-import 'package:photos/ui_helper/utils.dart';
+import 'package:masterapp/pages/nextpage.dart';
+import 'package:masterapp/ui_helper/utils.dart';
 
 class incriment extends StatefulWidget {
   const incriment({Key? key}) : super(key: key);
@@ -130,7 +130,9 @@ class _incrimentState extends State<incriment> {
                 ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => NextPage(no3Controller.text.toString(),no4Controller.text.toString()),
+                        builder: (context) => NextPage(
+                            no3Controller.text.toString(),
+                            no4Controller.text.toString()),
                       ));
                     },
                     child: Text("Next Page"))
