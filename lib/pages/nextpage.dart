@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class NextPage extends StatefulWidget {
-
   var namefromhome;
   var mobilefromhome;
-  NextPage(
-      this.namefromhome,
-      this.mobilefromhome
-      );
-
+  NextPage(this.namefromhome, this.mobilefromhome);
 
   @override
   State<NextPage> createState() => _NextPageState();
 }
 
 class _NextPageState extends State<NextPage> {
-
-  RangeValues Slidervalues =RangeValues(0, 1);
+  RangeValues Slidervalues = RangeValues(0, 1);
   @override
   Widget build(BuildContext context) {
-    RangeLabels labels = RangeLabels(Slidervalues.start.toString(), Slidervalues.end.toString()) ;
+    RangeLabels labels =
+        RangeLabels(Slidervalues.start.toString(), Slidervalues.end.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text("NextPage"),
       ),
-      body:Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,19 +31,14 @@ class _NextPageState extends State<NextPage> {
                 values: Slidervalues,
                 labels: labels,
                 divisions: 10,
-                onChanged: (newvalue){
-
+                onChanged: (newvalue) {
                   Slidervalues = newvalue;
 
-                  setState(() {
-
-                  });
-                }
-            )
+                  setState(() {});
+                })
           ],
         ),
       ),
-
     );
   }
 }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:masterapp/pages/LoginPage.dart';
 import 'package:masterapp/pages/masterpage.dart';
 import 'package:masterapp/ui_helper/colors.dart';
-import 'package:masterapp/ui_helper/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {

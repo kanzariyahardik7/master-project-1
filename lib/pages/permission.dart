@@ -1,9 +1,7 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:masterapp/ui_helper/colors.dart';
 import 'package:masterapp/ui_helper/mytext.dart';
-import 'package:masterapp/ui_helper/utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class Permissionn extends StatefulWidget {
@@ -19,10 +17,13 @@ class _PermissionnState extends State<Permissionn> {
   double _progress = 0;
   @override
   void initState() {
-    checkPermission(Permission.locationWhenInUse, context);
-    checkPermission(Permission.camera, context);
-    checkPermission(Permission.microphone, context);
-    checkPermission(Permission.manageExternalStorage, context);
+    List permission = [
+      checkPermission(Permission.locationWhenInUse, context),
+      checkPermission(Permission.camera, context),
+      checkPermission(Permission.microphone, context),
+      checkPermission(Permission.manageExternalStorage, context)
+    ];
+
     super.initState();
   }
 
@@ -44,19 +45,6 @@ class _PermissionnState extends State<Permissionn> {
           },
         ),
       ),
-
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       ElevatedButton(
-      //           onPressed: () {
-      //             checkPermission(Permission.locationWhenInUse, context);
-      //           },
-      //           child: MyText(text: "permission", color: White))
-      //     ],
-      //   ),
-      // ),
     );
   }
 
