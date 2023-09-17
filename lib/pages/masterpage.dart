@@ -6,10 +6,15 @@ import 'package:masterapp/pages/bmiCalculator.dart';
 import 'package:masterapp/pages/heroAnimation/heroAnimation.dart';
 import 'package:masterapp/pages/neomorphisom.dart';
 import 'package:masterapp/pages/permission.dart';
+import 'package:masterapp/pages/profile.dart';
 import 'package:masterapp/pages/stlstfwidget.dart';
 import 'package:masterapp/pages/twinAnimation.dart';
+import 'package:masterapp/ui_helper/colors.dart';
+import 'package:masterapp/ui_helper/constant.dart';
+import 'package:masterapp/ui_helper/mytext.dart';
 import 'package:masterapp/ui_helper/utils.dart';
 import 'package:masterapp/ui_helper/masterpage_container.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '3dList.dart';
 
 class MasterPage extends StatefulWidget {
@@ -21,11 +26,54 @@ class MasterPage extends StatefulWidget {
 
 class _MasterPageState extends State<MasterPage> {
   @override
+  void initState() {
+    getUserdata();
+    super.initState();
+  }
+
+  getUserdata() async {
+    SharedPreferences sharedprefs = await SharedPreferences.getInstance();
+    Constant.firebaseid = await sharedprefs.getString("firebaseid");
+    Constant.username = await sharedprefs.getString("username");
+    Constant.useremail = await sharedprefs.getString("useremail");
+    Constant.userphoto = await sharedprefs.getString("userphoto");
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Custom_Appbar("Master App"),
+        appBar: AppBar(
+          backgroundColor: Black,
+          iconTheme: IconThemeData(color: White),
+          title: MyText(
+            color: White,
+            text: "MasterApp",
+            fontsize: 30,
+            fontweight: FontWeight.w600,
+          ),
+          actions: [
+            InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Profile(),
+                  ));
+                },
+                child: Container(
+                    decoration:
+                        BoxDecoration(color: White, shape: BoxShape.circle),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Icon(
+                        Icons.person,
+                        color: Black,
+                      ),
+                    ))),
+            SizedBox(
+              width: 15,
+            )
+          ],
+        ),
         body: ListView(
-          //physics: NeverScrollableScrollPhysics(),
           children: [
             InkWell(
                 onTap: () {

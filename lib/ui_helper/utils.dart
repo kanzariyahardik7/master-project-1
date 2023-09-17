@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:masterapp/ui_helper/colors.dart';
+import 'package:masterapp/ui_helper/mytext.dart';
 
 TextStyle FONT_20_BOLD() {
   return TextStyle(
@@ -42,7 +43,12 @@ AppBar Custom_Appbar(String appbartitle) {
   return AppBar(
     backgroundColor: Black,
     iconTheme: IconThemeData(color: White),
-    title: Text(appbartitle, style: APPBAR_FONT_STYLE()),
+    title: MyText(
+      color: White,
+      text: appbartitle,
+      fontsize: 25,
+      fontweight: FontWeight.w500,
+    ),
   );
 }
 

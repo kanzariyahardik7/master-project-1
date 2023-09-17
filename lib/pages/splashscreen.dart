@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:masterapp/pages/LoginPage.dart';
 import 'package:masterapp/pages/masterpage.dart';
+import 'package:masterapp/ui_helper/colors.dart';
+import 'package:masterapp/ui_helper/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,8 +29,8 @@ class SplashScreenState extends State<SplashScreen>
         AnimationController(vsync: this, duration: Duration(seconds: 2));
     animation1 = Tween(begin: 150.0, end: 210.0).animate(animationController);
     animation2 = Tween(begin: 200.0, end: 300.0).animate(animationController);
-    ColorAnimation = ColorTween(begin: Colors.white, end: Colors.indigo)
-        .animate(animationController);
+    ColorAnimation =
+        ColorTween(begin: White, end: Black).animate(animationController);
 
     animationController.addListener(() {
       setState(() {});
@@ -72,7 +74,7 @@ class SplashScreenState extends State<SplashScreen>
                 elevation: 10,
                 color: ColorAnimation.value,
                 shape: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.indigo),
+                    borderSide: BorderSide(color: Black),
                     borderRadius: BorderRadius.circular(12)),
                 child: Container(
                     height: animation1.value,
@@ -87,9 +89,7 @@ class SplashScreenState extends State<SplashScreen>
               Text(
                 "Welcome to Master app",
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32,
-                    color: Colors.indigo),
+                    fontWeight: FontWeight.bold, fontSize: 32, color: Black),
               ),
             ],
           )),

@@ -11,14 +11,9 @@ Future<void> main() async {
   runApp(const CloudFileManagerUI());
 }
 
-class CloudFileManagerUI extends StatefulWidget {
+class CloudFileManagerUI extends StatelessWidget {
   const CloudFileManagerUI({Key? key}) : super(key: key);
 
-  @override
-  State<CloudFileManagerUI> createState() => _CloudFileManagerUIState();
-}
-
-class _CloudFileManagerUIState extends State<CloudFileManagerUI> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
