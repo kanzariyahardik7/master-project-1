@@ -33,7 +33,6 @@ class _WsCubeState extends State<WsCube> {
 
     var time = DateTime.now();
     var selectedDate;
-    var selectedTime;
     return Scaffold(
       appBar: Custom_Appbar("Ws Cube"),
       body: ListView(
@@ -155,11 +154,11 @@ class _WsCubeState extends State<WsCube> {
                                       borderSide: BorderSide(width: 2))))),
                       ElevatedButton(
                           onPressed: () {
-                            String YourName = NameController.text.toString();
-                            String YourMobileNumber =
-                                MobileNumberController.text.toString();
-                            String YourEmail = EmailController.text.toString();
-                            setState(() {});
+                            // String YourName = NameController.text.toString();
+                            // String YourMobileNumber =
+                            //     MobileNumberController.text.toString();
+                            // String YourEmail = EmailController.text.toString();
+                            // setState(() {});
                           },
                           child: Text("Submitt")),
                       Column(

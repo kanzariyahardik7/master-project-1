@@ -3,8 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:masterapp/pages/masterpage.dart';
+import 'package:masterapp/pages/otp.dart';
 import 'package:masterapp/ui_helper/colors.dart';
+import 'package:masterapp/ui_helper/constant.dart';
 import 'package:masterapp/ui_helper/mytext.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +21,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _user;
+  String? compliteNumber;
 
   TextEditingController phoneController = TextEditingController();
   @override
@@ -36,37 +40,48 @@ class _LoginPageState extends State<LoginPage> {
                   fontsize: 20,
                   fontweight: FontWeight.w400,
                 ),
-                TextFormField(
+                IntlPhoneField(
                   controller: phoneController,
-                  keyboardType: TextInputType.number,
-                  cursorColor: Black,
-                  style: TextStyle(
-                      color: Black, fontSize: 20, fontWeight: FontWeight.w400),
+                  showDropdownIcon: false,
+                  showCountryFlag: false,
                   decoration: InputDecoration(
-                    disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15)),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: Black, width: 2)),
+                      borderSide: BorderSide(color: Green),
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Black),
+                    ),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide(color: Black),
                     ),
                   ),
+                  initialCountryCode: 'IN',
+                  style: TextStyle(color: Black, fontWeight: FontWeight.w500),
+                  cursorColor: Black,
+                  dropdownTextStyle:
+                      TextStyle(color: Black, fontWeight: FontWeight.w600),
+                  onChanged: (phone) {
+                    compliteNumber = phone.completeNumber;
+                    log(compliteNumber!);
+                  },
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 InkWell(
                     onTap: () async {
-                      log("===>**");
-                      var sharedprefs = await SharedPreferences.getInstance();
-                      await sharedprefs.setString("islogin", "yes");
-                      var read = await sharedprefs.getString("islogin");
-                      log("===>$read");
-                      if (read == "yes") {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => MasterPage()));
-                      }
+                      log("$compliteNumber");
+                      await FirebaseAuth.instance.verifyPhoneNumber(
+                          phoneNumber: "$compliteNumber",
+                          verificationCompleted:
+                              (PhoneAuthCredential credential) {},
+                          verificationFailed: (FirebaseAuthException e) {},
+                          codeSent: (String verificationId, int? resendToken) {
+                            Constant.verficationId = verificationId;
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => OTP()));
+                          },
+                          codeAutoRetrievalTimeout: (String verificationId) {});
                     },
                     child: Container(
                         height: MediaQuery.of(context).size.height * 0.065,
@@ -75,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(15)),
                         child: Center(
                             child: MyText(
-                          text: "Login",
+                          text: "Get OTP",
                           color: White,
                           fontsize: 20,
                           fontweight: FontWeight.w700,

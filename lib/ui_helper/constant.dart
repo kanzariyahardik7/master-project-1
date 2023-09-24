@@ -7,4 +7,5 @@ class Constant {
   static String? useremail;
   static String? userphoto;
   static String? userid;
+  static String verficationId = "";
 }
