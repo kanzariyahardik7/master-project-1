@@ -21,7 +21,7 @@ class _SingleUserState extends State<SingleUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Custom_Appbar("Single User page"),
+        appBar: Custom_Appbar(appbartitle: "Single User page"),
         body: Consumer<UserProvider>(
           builder: (context, singleuserData, child) {
             return singleuserData.loading

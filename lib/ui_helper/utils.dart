@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:masterapp/ui_helper/colors.dart';
 import 'package:masterapp/ui_helper/mytext.dart';
@@ -39,14 +38,15 @@ TextStyle APPBAR_FONT_STYLE() {
       fontWeight: FontWeight.bold, fontSize: 28, color: Colors.white);
 }
 
-AppBar Custom_Appbar(String appbartitle) {
+AppBar Custom_Appbar({String? appbartitle, bool? isLocal}) {
   return AppBar(
     backgroundColor: Black,
     iconTheme: IconThemeData(color: White),
     title: MyText(
       color: White,
-      text: appbartitle,
+      text: appbartitle!,
       fontsize: 25,
+      multilanguage: isLocal,
       fontweight: FontWeight.w500,
     ),
   );

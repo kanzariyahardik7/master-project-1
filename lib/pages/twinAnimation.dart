@@ -34,7 +34,7 @@ class _twinAnimationState extends State<twinAnimation>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Custom_Appbar("Twin Animation"),
+      appBar: Custom_Appbar(appbartitle: "Twin Animation"),
       body: Container(
         decoration: BoxDecoration(gradient: Orange_Gradiant()),
         child: Center(

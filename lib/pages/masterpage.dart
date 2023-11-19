@@ -4,6 +4,7 @@ import 'package:masterapp/pages/Wscube.dart';
 import 'package:masterapp/pages/animatedContainer.dart';
 import 'package:masterapp/pages/bmiCalculator.dart';
 import 'package:masterapp/pages/heroAnimation/heroAnimation.dart';
+import 'package:masterapp/pages/language.dart';
 import 'package:masterapp/pages/neomorphisom.dart';
 import 'package:masterapp/pages/permission.dart';
 import 'package:masterapp/pages/profile.dart';
@@ -41,37 +42,7 @@ class _MasterPageState extends State<MasterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Black,
-          iconTheme: IconThemeData(color: White),
-          title: MyText(
-            color: White,
-            text: "MasterApp",
-            fontsize: 30,
-            fontweight: FontWeight.w600,
-          ),
-          actions: [
-            InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Profile(),
-                  ));
-                },
-                child: Container(
-                    decoration:
-                        BoxDecoration(color: White, shape: BoxShape.circle),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Icon(
-                        Icons.person,
-                        color: Black,
-                      ),
-                    ))),
-            SizedBox(
-              width: 15,
-            )
-          ],
-        ),
+        appBar: customAppbar(),
         body: ListView(
           children: [
             InkWell(
@@ -136,5 +107,57 @@ class _MasterPageState extends State<MasterPage> {
                 child: CustomContainer("Twin Animation")),
           ],
         ));
+  }
+
+  AppBar customAppbar() {
+    return AppBar(
+      backgroundColor: Black,
+      iconTheme: IconThemeData(color: White),
+      title: MyText(
+        color: White,
+        text: "MasterApp",
+        fontsize: 30,
+        fontweight: FontWeight.w600,
+      ),
+      actions: [
+        _buildFeatureButton(
+          ontap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => Language(),
+            ));
+          },
+          icon: Icons.language,
+        ),
+        SizedBox(
+          width: 15,
+        ),
+        _buildFeatureButton(
+          ontap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => Profile(),
+            ));
+          },
+          icon: Icons.person,
+        ),
+        SizedBox(
+          width: 15,
+        )
+      ],
+    );
+  }
+
+  Widget _buildFeatureButton(
+      {required Function()? ontap, required IconData? icon}) {
+    return InkWell(
+        onTap: ontap,
+        child: Container(
+            decoration: BoxDecoration(color: White, shape: BoxShape.circle),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Icon(
+                icon,
+                color: Black,
+              ),
+            )));
   }
 }

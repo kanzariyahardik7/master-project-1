@@ -27,7 +27,6 @@ class _AnmContainerState extends State<AnmContainer> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 4), () {
       reload();
@@ -42,7 +41,7 @@ class _AnmContainerState extends State<AnmContainer> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Custom_Appbar("Foo Animation"),
+        appBar: Custom_Appbar(appbartitle: "Foo Animation"),
         body: Container(
           decoration: BoxDecoration(gradient: Orange_Gradiant()),
           child: Padding(

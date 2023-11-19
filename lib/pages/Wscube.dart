@@ -34,7 +34,7 @@ class _WsCubeState extends State<WsCube> {
     var time = DateTime.now();
     var selectedDate;
     return Scaffold(
-      appBar: Custom_Appbar("Ws Cube"),
+      appBar: Custom_Appbar(appbartitle: "Ws Cube"),
       body: ListView(
         children: [
           Container(

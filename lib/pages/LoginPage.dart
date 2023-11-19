@@ -8,6 +8,7 @@ import 'package:masterapp/pages/masterpage.dart';
 import 'package:masterapp/pages/otp.dart';
 import 'package:masterapp/ui_helper/colors.dart';
 import 'package:masterapp/ui_helper/constant.dart';
+import 'package:masterapp/ui_helper/dimentions.dart';
 import 'package:masterapp/ui_helper/mytext.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,105 +33,21 @@ class _LoginPageState extends State<LoginPage> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MyText(
-                  text: "Phone :",
-                  color: Black,
-                  fontsize: 20,
-                  fontweight: FontWeight.w400,
-                ),
-                IntlPhoneField(
-                  controller: phoneController,
-                  showDropdownIcon: false,
-                  showCountryFlag: false,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Green),
-                    ),
-                    disabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Black),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Black),
-                    ),
-                  ),
-                  initialCountryCode: 'IN',
-                  style: TextStyle(color: Black, fontWeight: FontWeight.w500),
-                  cursorColor: Black,
-                  dropdownTextStyle:
-                      TextStyle(color: Black, fontWeight: FontWeight.w600),
-                  onChanged: (phone) {
-                    compliteNumber = phone.completeNumber;
-                    log(compliteNumber!);
-                  },
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                InkWell(
-                    onTap: () async {
-                      log("$compliteNumber");
-                      await FirebaseAuth.instance.verifyPhoneNumber(
-                          phoneNumber: "$compliteNumber",
-                          verificationCompleted:
-                              (PhoneAuthCredential credential) {},
-                          verificationFailed: (FirebaseAuthException e) {},
-                          codeSent: (String verificationId, int? resendToken) {
-                            Constant.verficationId = verificationId;
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => OTP()));
-                          },
-                          codeAutoRetrievalTimeout: (String verificationId) {});
-                    },
-                    child: Container(
-                        height: MediaQuery.of(context).size.height * 0.065,
-                        decoration: BoxDecoration(
-                            color: Black,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Center(
-                            child: MyText(
-                          text: "Get OTP",
-                          color: White,
-                          fontsize: 20,
-                          fontweight: FontWeight.w700,
-                        )))),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                InkWell(
-                    onTap: () async {
-                      log("===>**");
-                      var sharedprefs = await SharedPreferences.getInstance();
-                      await sharedprefs.setString("islogin", "yes");
-                      googleLogin();
-                      // userprovider.googleLogin();
-                      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      //     builder: (context) => MasterPage()));
-                    },
-                    child: Container(
-                        height: MediaQuery.of(context).size.height * 0.065,
-                        decoration: BoxDecoration(
-                            color: Black,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FaIcon(
-                              FontAwesomeIcons.google,
-                              color: White,
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            MyText(
-                              text: "Sign-in with Google",
-                              color: White,
-                              fontsize: 20,
-                              fontweight: FontWeight.w700,
-                            ),
-                          ],
-                        ))),
+                /*  login text  */
+                loginText(),
+                SizedBox(height: screenHeight(context) * 0.18),
+
+                /*  phone field  */
+                phoneField(),
+                SizedBox(height: screenHeight(context) * 0.03),
+
+                /*  get OTP button  */
+                otpButton(),
+                SizedBox(height: screenHeight(context) * 0.03),
+
+                /*  sign-In with google button  */
+                googleSigninButton(),
               ],
             ),
           ),
@@ -139,7 +56,122 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future googleLogin() async {
+  Widget loginText() {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: MyText(
+        text: "loginPage",
+        color: Black,
+        fontsize: 30,
+        fontweight: FontWeight.w700,
+      ),
+    );
+  }
+
+  Widget phoneField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MyText(
+          text: "Phone :",
+          color: Black,
+          fontsize: 20,
+          fontweight: FontWeight.w400,
+        ),
+        IntlPhoneField(
+          controller: phoneController,
+          showDropdownIcon: false,
+          showCountryFlag: false,
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Green),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Black),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Black),
+            ),
+          ),
+          initialCountryCode: 'IN',
+          style: TextStyle(color: Black, fontWeight: FontWeight.w500),
+          cursorColor: Black,
+          dropdownTextStyle:
+              TextStyle(color: Black, fontWeight: FontWeight.w600),
+          onChanged: (phone) {
+            compliteNumber = phone.completeNumber;
+            log(compliteNumber!);
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget googleSigninButton() {
+    return InkWell(
+        onTap: () async {
+          log("===>**");
+          var sharedprefs = await SharedPreferences.getInstance();
+          await sharedprefs.setString("islogin", "yes");
+          openGoogleLogin();
+        },
+        child: Container(
+            height: MediaQuery.of(context).size.height * 0.065,
+            decoration: BoxDecoration(
+                color: Black, borderRadius: BorderRadius.circular(15)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FaIcon(
+                  FontAwesomeIcons.google,
+                  color: White,
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                MyText(
+                  text: "Sign-in with Google",
+                  color: White,
+                  fontsize: 20,
+                  fontweight: FontWeight.w700,
+                ),
+              ],
+            )));
+  }
+
+  Widget otpButton() {
+    return InkWell(
+        onTap: () async {
+          log("$compliteNumber");
+          getOtp();
+        },
+        child: Container(
+            height: screenHeight(context) * 0.065,
+            decoration: BoxDecoration(
+                color: Black, borderRadius: BorderRadius.circular(15)),
+            child: Center(
+                child: MyText(
+              text: "Get OTP",
+              color: White,
+              fontsize: 20,
+              fontweight: FontWeight.w700,
+            ))));
+  }
+
+  getOtp() async {
+    return await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: "$compliteNumber",
+        verificationCompleted: (PhoneAuthCredential credential) {},
+        verificationFailed: (FirebaseAuthException e) {},
+        codeSent: (String verificationId, int? resendToken) {
+          Constant.verficationId = verificationId;
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => OTP()));
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {});
+  }
+
+  Future openGoogleLogin() async {
     final googleUser = await googleSignIn.signIn();
     if (googleUser == null) return;
     _user = googleUser;

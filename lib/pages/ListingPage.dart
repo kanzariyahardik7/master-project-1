@@ -29,7 +29,7 @@ class _ListingPageState extends State<ListingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Custom_Appbar("Listing Page"),
+        appBar: Custom_Appbar(appbartitle: "Listing Page"),
         body: Consumer<UserProvider>(
           builder: (context, value, child) {
             return value.loading

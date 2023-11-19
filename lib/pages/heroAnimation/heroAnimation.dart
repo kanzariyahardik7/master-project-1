@@ -13,7 +13,7 @@ class _HeroAnimationState extends State<HeroAnimation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Custom_Appbar("Hero Animation"),
+      appBar: Custom_Appbar(appbartitle: "Hero Animation"),
       body: Container(
         decoration: BoxDecoration(gradient: Orange_Gradiant()),
         child: Padding(

@@ -19,7 +19,7 @@ class _incrimentState extends State<incriment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Custom_Appbar("Increment Operator"),
+        appBar: Custom_Appbar(appbartitle: "Increment Operator"),
         body: Container(
           decoration: BoxDecoration(gradient: Orange_Gradiant()),
           child: Padding(

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:masterapp/ui_helper/colors.dart';
@@ -86,6 +85,7 @@ class _OTPState extends State<OTP> {
                 }
               } catch (e) {
                 log("wrong otp");
+                SnackBar(content: MyText(text: "wrong OTP", color: Black));
               }
             },
             child: Container(
